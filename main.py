@@ -10,7 +10,7 @@ def test_on_click_output():
     #button = driver.find_element_by_id("button")
     #button.click();
     #text = driver.find_element_by_id("demo")
-    return "HI"
+    return "Hi"
 
 
 if __name__ == '__main__':
