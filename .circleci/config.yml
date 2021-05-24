@@ -17,6 +17,7 @@ jobs:
       - image: "circleci/python:3.6.4"
     steps:
       - checkout
+      - run: sudo pip3 install selenium
       - run: python3 UnitTest.py
 
 workflows:
