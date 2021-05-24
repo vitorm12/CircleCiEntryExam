@@ -1,39 +1,32 @@
-version: 2
+version: 2.1
+dependencies:
+  pre:
+    - sudo pip install -U selenium
 jobs:
   build:
+    working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.6.2-stretch-browsers
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        environment:
-          FLASK_CONFIG: testing
-          TEST_DATABASE_URL: postgresql://ubuntu@localhost/circle_test?sslmode=disable
-      - image: circleci/postgres:9.6.5-alpine-ram
-        auth:
-          username: mydockerhub-user
-          password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
-        environment:
-          POSTGRES_USER: ubuntu
-          POSTGRES_DB: circle_test
-          POSTGRES_PASSWORD: ""
+      - image: cimg/python:3.9.5
     steps:
       - checkout
-      - run: mkdir test-reports
-      - run:
-          name: Download Selenium
-          command: |
-            curl -O http://selenium-release.storage.googleapis.com/3.5/selenium-server-standalone-3.5.3.jar
-      - run:
-          name: Start Selenium
-          command: |
-            java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
-          background: true
+      - run: pip install selenium
+      - run: python3 main.py
+
+
   test:
     working_directory: ~/circleci-python
     docker:
       - image: cimg/python:3.9.5
     steps:
+        - browser-tools/install-chrome
+        - browser-tools/install-chromedriver
+        - run:
+            command: |
+              google-chrome --version
+              chromedriver --version
+            name: Check install
+      orbs:
+        browser-tools: circleci/browser-tools@x.y
       - checkout
       - run: wget https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip unzip chromedriver_linux64.zip./chromedriver
       - run: pip install selenium
