@@ -7,7 +7,7 @@ jobs:
     working_directory: ~/circleci-python
     docker:
       - image: "circleci/python:3.6.4"
-      - image: circleci/node:jessie-browsers
+      - image: "circleci/node:jessie-browsers"
 
     steps:
       - checkout
