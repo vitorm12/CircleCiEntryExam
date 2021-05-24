@@ -5,6 +5,7 @@ from selenium import webdriver
 def test_on_click_output():
 
     workDir = os.path.dirname(os.path.realpath(__file__))
+    print(workDir)
     path_to_driver = workDir+"/"+"chromedriver"
     driver = webdriver.Chrome(path_to_driver);
     driver.get(workDir+"/html/index.html");
