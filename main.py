@@ -1,7 +1,6 @@
 import os
 
-from selenium.webdriver.chrome import webdriver
-
+from selenium import webdriver
 
 def test_on_click_output():
 
