@@ -19,7 +19,7 @@ jobs:
       - image: cimg/python:3.9.5
     steps:
       - checkout
-      - run: sudo pip3 install selenium
+      - run: pip install selenium
       - run: python3 UnitTest.py
 
 workflows:
