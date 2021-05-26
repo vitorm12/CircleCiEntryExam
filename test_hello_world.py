@@ -1,14 +1,13 @@
 import os
 
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.keys import Keys
+
 
 import main
 import unittest
-import WebDriver
 
 class TestHelloWorld(unittest.TestCase):
+    DOWNLOAD_DIR = '/tmp'
 
     def setUp(self):
         self.app = main.app.test_client()
