@@ -2,9 +2,9 @@ import os
 
 from selenium import webdriver
 
-
 import main
 import unittest
+
 
 class TestHelloWorld(unittest.TestCase):
     DOWNLOAD_DIR = '/tmp'
@@ -28,48 +28,16 @@ class TestHelloWorld(unittest.TestCase):
             }
         )
 
-
-
     def test_status_code(self):
-        html_content ="""
-        
-        <!DOCTYPE html>
-<html>
-<body>
-
-<h1>Simple Example</h1>
-
-<button id="button" onclick="myFunction()">Click me</button>
-
-<p id="demo"></p>
-
-<script>
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
-}
-</script>
-
-</body>
-</html>
-        
-        
-        """
-        response = self.app.get('/')
+        f = open("index.html", "r")
+        html_content = f.read("index.html")
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
-        workDir = os.path.dirname(os.path.realpath(__file__))
         self.driver.get("data:text/html;charset=utf-8,{html_content}".format(html_content=html_content))
-
         button = self.driver.find_element_by_id("button")
         button.click();
         text = self.driver.find_element_by_id("demo").text
-
-        self.assertEqual("Hello World",text)
-
-
-    def test_greeting_message(self):
-        greeting = 'Welcome to CI/CD'
-        self.assertEqual(main.greet(), greeting)
+        self.assertEqual("Hello World", text)
 
 
 if __name__ == '__main__':
