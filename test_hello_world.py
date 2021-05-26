@@ -30,7 +30,7 @@ class TestHelloWorld(unittest.TestCase):
 
     def test_status_code(self):
         f = open("index.html", "r")
-        html_content = f.read("index.html")
+        html_content = f.read()
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
         self.driver.get("data:text/html;charset=utf-8,{html_content}".format(html_content=html_content))
