@@ -6,7 +6,8 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: cimg/python:3.9.5
+      - image: selenium/standalone-chrome
+
     steps:
       - checkout
       - run: pip install selenium
