@@ -36,7 +36,7 @@ class TestHelloWorld(unittest.TestCase):
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
         workDir = os.path.dirname(os.path.realpath(__file__))
-        self.driver.get(workDir)
+        self.driver.get(host='0.0.0.0')
 
         button = self.driver.find_element_by_id("button")
         button.click();
