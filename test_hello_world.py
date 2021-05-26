@@ -8,17 +8,14 @@ import unittest
 
 class TestHelloWorld(unittest.TestCase):
     DOWNLOAD_DIR = '/tmp'
-
     def setUp(self):
         self.app = main.app.test_client()
         self.app.testing = True
         self.options = webdriver.ChromeOptions()
-
         self.options.add_argument('--disable-extensions')
         self.options.add_argument('--headless')
         self.options.add_argument('--disable-gpu')
         self.options.add_argument('--no-sandbox')
-
         self.options.add_experimental_option(
             'prefs', {
                 'download.default_directory': self.DOWNLOAD_DIR,
@@ -28,7 +25,7 @@ class TestHelloWorld(unittest.TestCase):
             }
         )
 
-    def test_status_code(self):
+    def test_button(self):
         f = open("index.html", "r")
         html_content = f.read()
         self.driver = webdriver.Chrome(chrome_options=self.options)
@@ -38,7 +35,3 @@ class TestHelloWorld(unittest.TestCase):
         button.click();
         text = self.driver.find_element_by_id("demo").text
         self.assertEqual("Hello World", text)
-
-
-if __name__ == '__main__':
-    unittest.main()
