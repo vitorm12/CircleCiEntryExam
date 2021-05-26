@@ -1,16 +1,11 @@
-import os
 
 from selenium import webdriver
-
-import main
 import unittest
 
 
 class TestHelloWorld(unittest.TestCase):
     DOWNLOAD_DIR = '/tmp'
     def setUp(self):
-        self.app = main.app.test_client()
-        self.app.testing = True
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--disable-extensions')
         self.options.add_argument('--headless')
