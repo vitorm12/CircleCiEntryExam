@@ -64,7 +64,7 @@ function myFunction() {
         button.click();
         text = self.driver.find_element_by_id("demo")
 
-        self.assertEqual("Hello World",)
+        self.assertEqual("Hello World",text)
 
 
     def test_greeting_message(self):
