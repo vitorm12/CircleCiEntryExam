@@ -18,7 +18,7 @@ class TestHelloWorld(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         workDir = os.path.dirname(os.path.realpath(__file__))
         path_to_driver = workDir + "/" + "chromedriver"
-        driver = webdriver.Chrome(path_to_driver)
+        driver = webdriver.Chrome(executable_path=path_to_driver)
         #driver.get(workDir+"/html/index.html");
         #button = driver.find_element_by_id("button")
         #button.click();
