@@ -35,6 +35,8 @@ class TestHelloWorld(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
+        self.driver.get('http://www.test.com')
+
 
     def test_greeting_message(self):
         greeting = 'Welcome to CI/CD'
