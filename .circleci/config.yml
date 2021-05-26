@@ -1,48 +1,24 @@
 version: 2.1
-selenium:
-  image: selenium/standalone-firefox
-  ports:
-  - 4444:4444
 jobs:
-  build:
-    working_directory: ~/circleci-python
+  run_tests:
     docker:
-      - image: selenium/standalone-firefox
-
+      - image: circleci/python:3.7.4
     steps:
       - checkout
-      - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-      - run: sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-      - run: apt-get -y update
-      - run: apt-get install -y google-chrome-stable
-      - run: apt-get install -yqq unzip
-      - run: wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-      - run: unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
-      - run: pip install selenium==3.8.0
-
-      - run: python3 main.py
-
-
-  test:
-    working_directory: ~/circleci-python
-    docker:
-      - image: selenium/standalone-firefox
-    steps:
-      - checkout
-      - run: wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-      - run: sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
-      - run: apt-get -y update
-      - run: apt-get install -y google-chrome-stable
-      - run: apt-get install -yqq unzip
-      - run: wget -O /tmp/chromedriver.zip http://chromedriver.storage.googleapis.com/`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE`/chromedriver_linux64.zip
-      - run: unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
-      - run: pip install selenium==3.8.0
-      - run: python3 UnitTest.py
-
+      - run:
+          name: Install Python dependencies
+          command: |
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+            pip install --user -r requirements.txt
+      - run:
+          name: Run unit tests
+          command: |
+            pytest --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
 workflows:
-  build_and_test:
+  build_test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - run_tests

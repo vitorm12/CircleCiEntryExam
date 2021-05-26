@@ -1,20 +1,34 @@
-import logging
-import os
+from flask import Flask
 
-from selenium import webdriver
+app = Flask(__name__)
 
-def test_on_click_output():
 
-    workDir = os.path.dirname(os.path.realpath(__file__))
-    #print(workDir)
-    path_to_driver = workDir+"/"+"chromedriver"
-    driver = webdriver.Chrome('./chromedriver')
-    #driver.get(workDir+"/html/index.html");
-    #button = driver.find_element_by_id("button")
-   # button.click();
-    #text = driver.find_element_by_id("demo")
-    return "Hi"
+def generate_html(message):
+    version_number = '0001'
+    html = """
+        <html>
+        <body>
+            <div style='text-align:center;font-size:80px;'>
+                <image height="340" width="1200" src="https://user-images.githubusercontent.com/194400/41597205-a57442ea-73c4-11e8-9591-61f5c83c7e66.png">
+                <br> {0}
+                <p>Version Number: {1}</p>
+                <br>
+            </div>
+        </body>
+        </html>""".format(message, version_number)
+    return html
+
+
+def greet():
+    greeting = 'Welcome to CI/CD'
+    return greeting
+
+
+@app.route('/')
+def hello_world():
+    html = generate_html(greet())
+    return html
 
 
 if __name__ == '__main__':
-    test_on_click_output()
+    app.run(host='0.0.0.0', port=5000)
