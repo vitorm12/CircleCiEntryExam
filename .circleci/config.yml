@@ -13,6 +13,8 @@ jobs:
       - run:
           command: |
             wget  http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.0.jar
+            sudo apt-get install -y chromium-browser
+
       - run:
           name: Run unit tests
 
