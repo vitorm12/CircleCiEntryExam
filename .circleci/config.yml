@@ -12,12 +12,12 @@ jobs:
             pip install --user -r requirements.txt
       - run:
           command: |
-            sudo curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
-            sudo dpkg -i /chrome.deb || apt-get install -yf
-            sudo rm /chrome.deb
-            sudo curl https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -o /usr/local/bin/chromedriver
-            sudo chmod +x /usr/local/bin/chromedriver
-            sudo apt-get install -f
+            sudo -s curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
+            sudo -s dpkg -i /chrome.deb || apt-get install -yf
+            sudo -s rm /chrome.deb
+            sudo -s curl https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -o /usr/local/bin/chromedriver
+            sudo -s chmod +x /usr/local/bin/chromedriver
+            sudo -s apt-get install -f
       - run:
           name: Run unit tests
 
