@@ -1,4 +1,3 @@
-
 version: 2
 jobs:
   build:
@@ -20,6 +19,11 @@ jobs:
           POSTGRES_PASSWORD: ""
     steps:
       - checkout
+      - run:
+          name: Install Python dependencies
+          command: |
+            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
+            pip install --user -r requirements.txt
       - run: mkdir test-reports
       - run:
           name: Download Selenium
