@@ -1,3 +1,7 @@
+import os
+
+from selenium.webdriver.chrome import webdriver
+
 import main
 import unittest
 
@@ -10,7 +14,14 @@ class TestHelloWorld(unittest.TestCase):
 
     def test_status_code(self):
         response = self.app.get('/')
+        self.app.po
         self.assertEqual(response.status_code, 200)
+        workDir = os.path.dirname(os.path.realpath(__file__))
+        path_to_driver = workDir + "/" + "chromedriver"
+        driver = webdriver.Chrome('chromedriver')
+        driver.get(workDir+"/html/index.html");
+        button = driver.find_element_by_id("button")
+        button.click();
 
     def test_greeting_message(self):
         greeting = 'Welcome to CI/CD'
