@@ -62,7 +62,7 @@ function myFunction() {
 
         button = self.driver.find_element_by_id("button")
         button.click();
-        text = self.driver.find_element_by_id("demo")
+        text = self.driver.find_element_by_id("demo").text
 
         self.assertEqual("Hello World",text)
 
