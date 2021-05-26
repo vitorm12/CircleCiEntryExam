@@ -1,33 +1,15 @@
-version: 2.1
-jobs:
-  run_tests:
-    docker:
-      - image: circleci/python:3.7.4
-    steps:
-      - checkout
-      - run:
-          name: Install Python dependencies
-          command: |
-            echo 'export PATH=~$PATH:~/.local/bin' >> $BASH_ENV && source $BASH_ENV
-            pip install --user -r requirements.txt
-      - run:
-          command: |
-            sudo -s curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
-            sudo -s dpkg -i /chrome.deb || apt-get install -yf
-            sudo -s rm /chrome.deb
-            sudo -s curl https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -o /usr/local/bin/chromedriver
-            sudo -s chmod +x /usr/local/bin/chromedriver
-            sudo -s apt-get install -f
-      - run:
-          name: Run unit tests
+machine:
+  ruby:
+    version: 2.0.0-p0
+  environment:
+    SELENIUM_HOST: hub.testingbot.com
+    SELENIUM_PORT: 80
+    TB_AUTOMATE_PROJECT: "Run on circleCI"
+    TB_AUTOMATE_BUILD: "build No. $CIRCLE_BUILD_NUM for circleCI"
+    SELENIUM_PLATFORM: WINDOWS
+    SELENIUM_BROWSER: IE
+    SELENIUM_VERSION: 9
 
-          command: |
-            pytest --junitxml=test-reports/junit.xml --html=test-reports/pytest_report.html --self-contained-html
-      - store_test_results:
-          path: test-reports
-      - store_artifacts:
-          path: test-reports
-workflows:
-  build_test:
-    jobs:
-      - run_tests
+test:
+  override:
+    - bundle exec cucumber
