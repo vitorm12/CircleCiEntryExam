@@ -1,7 +1,8 @@
 version: 2.1
-dependencies:
-  pre:
-    - sudo pip install -U selenium
+selenium:
+  image: selenium/standalone-firefox
+  ports:
+  - 4444:4444
 jobs:
   build:
     working_directory: ~/circleci-python
@@ -10,7 +11,6 @@ jobs:
 
     steps:
       - checkout
-      - run: pip install selenium
       - run: python3 main.py
 
 
@@ -20,7 +20,6 @@ jobs:
       - image: circleci/python
     steps:
       - checkout
-      - run: pip install selenium
       - run: python3 UnitTest.py
 
 workflows:
