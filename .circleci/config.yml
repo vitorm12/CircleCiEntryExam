@@ -6,10 +6,7 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: jracine/python37-geckodriver
-        auth:
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+      - image: circleci/python
 
     steps:
       - checkout
@@ -19,7 +16,7 @@ jobs:
   test:
     working_directory: ~/circleci-python
     docker:
-      - image: cimg/python:3.9.5
+      - image: circleci/python
     steps:
       - checkout
       - run: python3 UnitTest.py
