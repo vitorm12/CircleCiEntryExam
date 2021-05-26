@@ -32,7 +32,6 @@ class TestHelloWorld(unittest.TestCase):
 
     def test_status_code(self):
         response = self.app.get('/')
-        self.assertEqual(response.status_code, 200)
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
         workDir = os.path.dirname(os.path.realpath(__file__))

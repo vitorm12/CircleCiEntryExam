@@ -7,23 +7,16 @@ def generate_html(message):
     version_number = '0001'
     html = """
         <!DOCTYPE html>
-<html>
-<body>
-
-<h1>Simple Example</h1>
-
-<button id="button" onclick="myFunction()">Click me</button>
-
-<p id="demo"></p>
-
-<script>
-function myFunction() {
-  document.getElementById("demo").innerHTML = "Hello World";
-}
-</script>
-
-</body>
-</html>""".format(message, version_number)
+        <html>
+        <body>
+        <h1>Simple Example</h1>
+        <button id="button" onclick="myFunction()">Click me</button>
+        <p id="demo"></p><script>function myFunction() {
+            document.getElementById("demo").innerHTML = "Hello World";
+        }
+    </script>
+    </body>
+    </html>"""
     return html
 
 
