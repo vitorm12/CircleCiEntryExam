@@ -30,6 +30,6 @@ jobs:
           command: |
             java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
-      steps:
-        - checkout
-        - run: python3 test_hello_world.py
+      - run: python3 main-test.py
+
+
