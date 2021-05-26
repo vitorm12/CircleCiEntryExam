@@ -11,7 +11,8 @@ jobs:
     steps:
       - checkout
       - run: wget https://bootstrap.pypa.io/get-pip.py
-      - run: sudo apt-get -y install python3-pip
+      - run: sudo add-apt-repository universe
+      - run: sudo apt-get update
       - run: python3 -m pip install selenium
       - run: python3 main.py
 
@@ -23,7 +24,8 @@ jobs:
     steps:
       - checkout
       - run: wget https://bootstrap.pypa.io/get-pip.py
-      - run: sudo apt-get -y install python3-pip
+      - run: sudo add-apt-repository universe
+      - run: sudo apt-get update
       - run: python3 -m pip install selenium
       - run: python3 UnitTest.py
 
