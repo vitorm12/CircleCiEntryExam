@@ -35,7 +35,12 @@ class TestHelloWorld(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
-        self.driver.get('http://www.test.com')
+        workDir = os.path.dirname(os.path.realpath(__file__))
+        self.driver.get(workDir)
+
+        button = self.driver.find_element_by_id("button")
+        button.click();
+        text = self.driver.find_element_by_id("demo")
 
 
     def test_greeting_message(self):
