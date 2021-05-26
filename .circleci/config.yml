@@ -13,7 +13,7 @@ jobs:
       - run:
           command: |
             wget  http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.0.jar
-            java -jar selenium-server-standalone-3.141.0.jar
+            brew cask install java
       - run:
           name: Run unit tests
 
