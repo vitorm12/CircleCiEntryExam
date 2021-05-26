@@ -13,7 +13,11 @@ jobs:
       - run:
           command: |
             wget  http://selenium-release.storage.googleapis.com/3.141/selenium-server-standalone-3.141.0.jar
-            sudo dpkg -i google-chrome-stable_current_amd64.deb
+            curl https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -o /chrome.deb
+            dpkg -i /chrome.deb || apt-get install -yf
+            rm /chrome.deb
+            curl https://chromedriver.storage.googleapis.com/2.31/chromedriver_linux64.zip -o /usr/local/bin/chromedriver
+            chmod +x /usr/local/bin/chromedriver
       - run:
           name: Run unit tests
 
