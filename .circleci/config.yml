@@ -6,15 +6,10 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: selenium/standalone-chrome
+      - image: jracine/python37-geckodriver
 
     steps:
       - checkout
-      - run: sudo apt-get install python3-distutils
-      - run: sudo apt-get install python3-apt
-      - run: wget https://bootstrap.pypa.io/get-pip.py
-      - run: python3 get-pip.py
-      - run: python3 -m pip install selenium
       - run: python3 main.py
 
 
@@ -24,11 +19,6 @@ jobs:
       - image: cimg/python:3.9.5
     steps:
       - checkout
-      - run: sudo apt-get install python3-distutils
-      - run: sudo apt-get install python3-apt
-      - run: wget https://bootstrap.pypa.io/get-pip.py
-      - run: python3 get-pip.py
-      - run: python3 -m pip install selenium
       - run: python3 UnitTest.py
 
 workflows:
