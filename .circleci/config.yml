@@ -10,10 +10,6 @@ jobs:
 
     steps:
       - checkout
-      - run: wget https://bootstrap.pypa.io/get-pip.py
-      - run: sudo add-apt-repository universe
-      - run: sudo apt-get update
-      - run: python3 -m pip install selenium
       - run: python3 main.py
 
 
@@ -23,10 +19,6 @@ jobs:
       - image: cimg/python:3.9.5
     steps:
       - checkout
-      - run: wget https://bootstrap.pypa.io/get-pip.py
-      - run: sudo add-apt-repository universe
-      - run: sudo apt-get update
-      - run: python3 -m pip install selenium
       - run: python3 UnitTest.py
 
 workflows:
