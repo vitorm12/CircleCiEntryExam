@@ -7,6 +7,9 @@ jobs:
     working_directory: ~/circleci-python
     docker:
       - image: jracine/python37-geckodriver
+        auth:
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
 
     steps:
       - checkout
