@@ -31,11 +31,34 @@ class TestHelloWorld(unittest.TestCase):
 
 
     def test_status_code(self):
+        html_content ="""
+        
+        <!DOCTYPE html>
+<html>
+<body>
+
+<h1>Simple Example</h1>
+
+<button id="button" onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+</body>
+</html>
+        
+        
+        """
         response = self.app.get('/')
         self.driver = webdriver.Chrome(chrome_options=self.options)
         self.driver.implicitly_wait(10)
         workDir = os.path.dirname(os.path.realpath(__file__))
-        self.driver.get('0.0.0.0')
+        self.driver.get("data:text/html;charset=utf-8,{html_content}".format(html_content=html_content))
 
         button = self.driver.find_element_by_id("button")
         button.click();
