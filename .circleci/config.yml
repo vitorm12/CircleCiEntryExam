@@ -10,7 +10,6 @@ jobs:
 
     steps:
       - checkout
-      - run: pip install selenium
       - run: python3 main.py
 
 
@@ -20,8 +19,6 @@ jobs:
       - image: cimg/python:3.9.5
     steps:
       - checkout
-      - run: wget https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip \unzip chromedriver_linux64.zip./chromedriver
-      - run: pip install selenium
       - run: python3 UnitTest.py
 
 workflows:
