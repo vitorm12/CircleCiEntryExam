@@ -10,6 +10,7 @@ jobs:
 
     steps:
       - checkout
+      - run: pip install selenium
       - run: python3 main.py
 
 
@@ -19,6 +20,7 @@ jobs:
       - image: circleci/python
     steps:
       - checkout
+      - run: pip install selenium
       - run: python3 UnitTest.py
 
 workflows:
