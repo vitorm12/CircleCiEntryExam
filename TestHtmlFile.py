@@ -1,10 +1,10 @@
-
 from selenium import webdriver
 import unittest
 
 
-class TestHelloWorld(unittest.TestCase):
+class TestHtml(unittest.TestCase):
     DOWNLOAD_DIR = '/tmp'
+
     def setUp(self):
         self.options = webdriver.ChromeOptions()
         self.options.add_argument('--disable-extensions')
